@@ -774,7 +774,13 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -789,11 +795,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 4c2e6558-ee25-4ad4-bce7-f3b22504c4be
+  cloudProjectId: 19f51903-6982-44d7-bdf5-5852f654cf9b
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: walktohell
-  organizationId: ashmitb197
+  organizationId: astroskoll
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 1
   playerDataPath: 
