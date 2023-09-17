@@ -8,6 +8,8 @@ public class damageData : collisiondetection
 {
     public int gateDamage = 5;
     public int enemyDamage = 30;
+    public int fallDamage = 4;    //TO DO
+
 }
 public class HealthSystem :  damageData
 {
@@ -27,6 +29,7 @@ public class HealthSystem :  damageData
         healthSilder = healthBar.GetComponent<Slider>();
     }
 
+
     public void OnCollisionEnter2D(Collision2D col)
     {
         if(col.collider.tag == "Gate")
@@ -41,6 +44,9 @@ public class HealthSystem :  damageData
         {
             health -= enemyDamage;
         }
+
+        
+
 
         healthSilder.value = health;
 

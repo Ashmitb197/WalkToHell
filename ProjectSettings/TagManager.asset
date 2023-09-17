@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Bullet
   - Grass
+  - Ladder
   layers:
   - Default
   - TransparentFX
