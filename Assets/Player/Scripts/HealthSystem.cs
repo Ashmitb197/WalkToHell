@@ -23,6 +23,7 @@ public class HealthSystem :  damageData
 
     void start()
     {
+        healthBar = GameObject.Find("Canvas/HealthBar");
         healthSilder = healthBar.GetComponent<Slider>();
     }
 
