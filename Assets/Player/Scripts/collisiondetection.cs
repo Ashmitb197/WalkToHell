@@ -11,6 +11,7 @@ public class collisiondetection : MonoBehaviour {
 	public bool isClimbing;
 
 	public bool nearStairs;
+	
 
 	void Awake()
 	{
@@ -39,7 +40,7 @@ public class collisiondetection : MonoBehaviour {
 
 		if(isClimbing)
 		{
-			rb.velocity = new Vector2(rb.velocity.x, vertical * 3);
+			rb.velocity = new Vector2(0, vertical * 3);
 		}
 		// else
 		// {
