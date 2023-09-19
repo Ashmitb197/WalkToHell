@@ -17,7 +17,7 @@ public class Main_MenuScene : MonoBehaviour {
 	{
 		source.clip = sounds[2];
 		source.Play();
-		SceneManager.LoadScene("Scene 1");
+		SceneManager.LoadScene("TestScene");
 		
 	}
 	public void Options()
