@@ -9,7 +9,7 @@ public class movement_behaviour : MonoBehaviour {
 	public Rigidbody2D rb;
 	public GameObject player;
 	[SerializeField] private Vector2 move;
-	[SerializeField] private float right;
+	[SerializeField] private float right = 2.0f;
 	[SerializeField] private SpriteRenderer sr;
 	[SerializeField] private LayerMask ground;
 	public Transform feet;
@@ -55,7 +55,7 @@ public class movement_behaviour : MonoBehaviour {
 
 	void walk()
 	{
-		right = 2f;
+		
 		move = new Vector2(right,0f);
 		if (Input.GetKey("d"))
 		{
