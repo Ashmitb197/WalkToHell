@@ -5,48 +5,60 @@ using UnityEngine.Audio;
 
 public class movement_behaviour : MonoBehaviour {
 
+
+	[Header("Movement Variables\n")]
+	[SerializeField] private float moveSpeed = 2.0f;
+	public float jumpforce = 20f;
+
+	[Header("\nObject Refrences\n")]
 	public Animator anime;
 	public Rigidbody2D rb;
 	public GameObject player;
-	[SerializeField] private Vector2 move;
-	[SerializeField] private float right = 2.0f;
+	
 	[SerializeField] private SpriteRenderer sr;
 	[SerializeField] private LayerMask ground;
-	public Transform feet;
-	public float jumpforce = 20f;
 
-	public GameObject clouds;
 	public AudioSource source;
 	public AudioClip clip;
+	public LayerMask  foodLayer;
+	public GameObject Gun;
+	public GameObject bulletPrefab;
+	
 
+	[Header("\nOtherVariables\n")]
 	public bool openMouth;
 
-	public LayerMask  foodLayer;
+	public Transform feet;
 	
-	public int RayEndPoint;
+	public float RayEndPoint;
 
-	public GameObject Gun;
+	public bool isFacingLeft;
+	
 
-	public GameObject bulletPrefab;
+	public float HorizontalInput;
 
 	// Use this for initialization
 	void Start () {
 
-		//anime = GameObject.GetComponent<Animator>();
-		//rb = GameObject.GetComponent<Rigidbody2D>();
+		anime = gameObject.GetComponent<Animator>();
+		rb = gameObject.GetComponent<Rigidbody2D>();
+		sr = gameObject.GetComponent<SpriteRenderer>();
 		
+		isFacingLeft = true;
 	}
 
-
+	void Update()
+	{
+		HorizontalInput = Input.GetAxisRaw("Horizontal");
+	}
 	
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		walk();
 		Jump();
 		shootBullet();
 		IsGrounded();
-		Bug_fix();
 		foodCheck();
 
 	}
@@ -56,26 +68,29 @@ public class movement_behaviour : MonoBehaviour {
 	void walk()
 	{
 		
-		move = new Vector2(right,0f);
-		if (Input.GetKey("d"))
+
+		if(HorizontalInput != 0)
 		{
+			transform.Translate(moveSpeed*Time.deltaTime,0,0);
 			anime.SetBool("Walking", true);
-			player.transform.Translate(move*Time.deltaTime);
-			sr.flipX = true;
-			//source.Play(clip);
+			if(HorizontalInput < 0 && isFacingLeft)
+			{
+				flip();
+			}
+			else if(HorizontalInput > 0 && !isFacingLeft)
+			{
+				flip();
+			}
+
 		}
-		else if(Input.GetKey("a"))
-		{
-			anime.SetBool("Walking", true);
-			player.transform.Translate(-move*Time.deltaTime);
-			sr.flipX = false;
-		}
-		else
-		{
+		else{
 			anime.SetBool("Walking", false);
 		}
+			
 
 	}
+
+	
 	void Jump()
 	{
 		if(Input.GetKeyDown("space") && IsGrounded())
@@ -118,22 +133,6 @@ public class movement_behaviour : MonoBehaviour {
 		return false;
 	}
 
-	void Bug_fix()
-	{
-		if(player.transform.rotation.z <= 10)
-		{
-			Vector2 rot_angle = new Vector2(0,0);
-			player.transform.eulerAngles = rot_angle;
-		}
-		if(player.transform.rotation.z <= 10)
-		{
-			Vector2 rot_angle = new Vector2(0,0);
-			player.transform.eulerAngles = rot_angle;
-		}
-
-
-	}
-
 	void foodCheck()
 	{
 		
@@ -143,14 +142,7 @@ public class movement_behaviour : MonoBehaviour {
 
 		//Getting Player Direction
 		Vector2 playerDirectionForRay = Vector2.right;
-		if(Input.GetKey(KeyCode.A))
-		{
-			RayEndPoint = -2;
-		}
-		else if (Input.GetKey(KeyCode.D))
-		{
-			RayEndPoint = 2;
-		}
+		RayEndPoint = 2*HorizontalInput;
 
 
 		Vector2 forward = transform.TransformDirection(Vector2.right) * 2;
@@ -170,6 +162,14 @@ public class movement_behaviour : MonoBehaviour {
 		// {
 		// 	openMouth = true;
 		// }
+
+		
+	}
+
+	void flip()
+	{
+		isFacingLeft = !isFacingLeft;
+		transform.Rotate(0f,180f,0f);
 	}
 
 
