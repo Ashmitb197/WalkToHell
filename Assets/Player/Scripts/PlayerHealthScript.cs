@@ -15,6 +15,8 @@ public class PlayerHealthScript : HealthSystem
 
     public bool isDead;
 
+    public GameObject gravePrefab;
+
     // Start is called before the first frame update
     void start()
     {
@@ -38,10 +40,12 @@ public class PlayerHealthScript : HealthSystem
 
     void DeathCheck()
     {
+        Vector3 graveAddOffset = new Vector3(0,-0.5f,0);
         if(health < 1)
         {
             isDead = true;
             gameOverCanvas.SetActive(true);
+            Instantiate(gravePrefab, transform.position+graveAddOffset, transform.rotation);
         }
         else
         {
