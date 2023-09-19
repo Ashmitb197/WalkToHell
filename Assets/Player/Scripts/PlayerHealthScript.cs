@@ -15,22 +15,32 @@ public class PlayerHealthScript : HealthSystem
 
     public bool isDead;
 
-    public GameObject gravePrefab;
+    public int graveType;
+    public GameObject[] gravePrefab;
+
 
     // Start is called before the first frame update
     void start()
     {
+        
+        
+
         healthBar = GameObject.Find("Canvas/HealthBar");
         healthSilder = healthBar.GetComponent<Slider>();
         gameOverCanvas = GameObject.Find("GameOverCanvas");
 
         gameOverCanvas.SetActive(false);
+
+        
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         healthSilder.value = health;
+       
         
         DeathCheck();
 
@@ -40,12 +50,14 @@ public class PlayerHealthScript : HealthSystem
 
     void DeathCheck()
     {
-        Vector3 graveAddOffset = new Vector3(0,-0.5f,0);
+
+        graveType = Random.Range(0,2);
+        Vector3 graveAddOffset = new Vector3(0,-0.3f,0);
+        
         if(health < 1)
         {
             isDead = true;
-            gameOverCanvas.SetActive(true);
-            Instantiate(gravePrefab, transform.position+graveAddOffset, transform.rotation);
+            Instantiate(gravePrefab[graveType], transform.position+graveAddOffset, transform.rotation);
         }
         else
         {

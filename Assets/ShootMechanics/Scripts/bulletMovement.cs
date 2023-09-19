@@ -5,7 +5,7 @@ using UnityEngine;
 public class bulletMovement : MonoBehaviour
 {
 
-    protected int direction =10;
+    protected int direction;
     // Start is called before the first frame update
     void Start()
     {

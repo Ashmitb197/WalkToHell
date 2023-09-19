@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
@@ -17,34 +17,38 @@ public class CameraFollow : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		if(target.transform.position.y > 3)
+		if(target != null)
 		{
-			offset.y = -0.1f;
-		}
-		else{
-			offset.y = 0.1f;
-		}
-		if (target)
-		{
-			Vector3 posNoZ = transform.position;
-			posNoZ.z = target.transform.position.z;
 
-			Vector3 targetDirection = (target.transform.position - posNoZ);
+			if(target.transform.position.y > 3)
+			{
+				offset.y = -0.1f;
+			}
+			else{
+				offset.y = 0.1f;
+			}
+			if (target)
+			{
+				Vector3 posNoZ = transform.position;
+				posNoZ.z = target.transform.position.z;
 
-			interpVelocity = targetDirection.magnitude * 5f;
+				Vector3 targetDirection = (target.transform.position - posNoZ);
 
-			targetPos = transform.position + (targetDirection.normalized * interpVelocity * Time.deltaTime); 
+				interpVelocity = targetDirection.magnitude * 5f;
 
-			transform.position = Vector3.Lerp( transform.position, targetPos + offset, 0.25f);
-		}
-		if(target.transform.position.x <= -21.74072)
-		{
-			offset.x = 0.5f;
-		}
+				targetPos = transform.position + (targetDirection.normalized * interpVelocity * Time.deltaTime); 
 
-		else
-		{
-			offset.x = 0f;
-		}
+				transform.position = Vector3.Lerp( transform.position, targetPos + offset, 0.25f);
+			}
+			if(target.transform.position.x <= -21.74072)
+			{
+				offset.x = 0.5f;
+			}
+
+			else
+			{
+				offset.x = 0f;
+			}
+		}	
 	}
 }

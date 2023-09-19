@@ -370,6 +370,7 @@
 "Assets/ShootMechanics/Scripts/bulletMovement.cs"
 "Assets/ShootMechanics/Scripts/playerBullet.cs"
 "Assets/UISystem/GameOverScreen/SceneSelection.cs"
+"Assets/UISystem/Managment/UIManagment.cs"
 -langversion:9.0
 
 /deterministic
