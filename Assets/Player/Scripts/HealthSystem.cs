@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 
 public class damageData : collisiondetection
@@ -15,59 +15,32 @@ public class HealthSystem :  damageData
 {
     // Start is called before the first frame update
 
-    public GameObject healthBar;
+   
 
-    public Slider healthSilder;
-
-    public int maxHealth = 101;
+    public int maxHealth = 100;
     public int health = 100;
 
 
-    void start()
+
+    
+
+    void update()
     {
-        healthBar = GameObject.Find("Canvas/HealthBar");
-        healthSilder = healthBar.GetComponent<Slider>();
+
+
     }
 
-
-    public void OnCollisionEnter2D(Collision2D col)
+    public virtual void die(bool isDead)
     {
-        if(col.collider.tag == "Gate")
+        if(isDead)
         {
-            Debug.Log(health);
-            health -= gateDamage;
+            Destroy(gameObject);
+
         }
 
-        
-
-        if(col.collider.tag == "Enemy")
-        {
-            health -= enemyDamage;
-        }
-
-        
-
-
-        healthSilder.value = health;
-
-
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if(col.tag == "Coins")
-		{
 
-			string collidername = col.name;
-			Destroy(GameObject.Find(collidername));
-            if(health < maxHealth)
-			    health += 1;
-			//scoret.GetComponent<Text>().text = score.ToString();
-
-            Debug.Log(health);
-
-		}
-        
-    }
+    
 
 }
