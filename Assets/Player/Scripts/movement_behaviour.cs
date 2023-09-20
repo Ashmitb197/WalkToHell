@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class movement_behaviour : MonoBehaviour {
+public class Movement_behaviour : MonoBehaviour {
 
 
 	[Header("Movement Variables\n")]
@@ -172,5 +172,9 @@ public class movement_behaviour : MonoBehaviour {
 		transform.Rotate(0f,180f,0f);
 	}
 
+	public bool getIsFacingLeft()
+    {
+        return isFacingLeft;
+    }
 
 }

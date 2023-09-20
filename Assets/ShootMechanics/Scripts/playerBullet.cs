@@ -7,30 +7,38 @@ public class playerBullet : bulletMovement
 
     public GameObject PlayerRef;
     public Rigidbody2D rb;
+    public Movement_behaviour pMovementScript;
+
+    [Range(500, 2000)] public int fireSpeed;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         PlayerRef = GameObject.Find("Player");
         rb = gameObject.GetComponent<Rigidbody2D>();
+        pMovementScript = PlayerRef.GetComponent<Movement_behaviour>();
 
         //rb.velocity = transform.right*fireSpeed*Time.deltaTime;
-        bulletBehaviour(rb, gameObject);
+        fireSpeed = 700;
 
+    }
+
+    void Start()
+    {
+        if(pMovementScript.getIsFacingLeft() == true)
+        {
+            bulletBehaviour(rb, gameObject, -fireSpeed);
+        }
+        else
+        {
+            bulletBehaviour(rb, gameObject, fireSpeed);
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if(playerSpriteRenderer.flipX == false)
-        // {
-        //     updateDirection(10);
-        // }
-        // else if(playerSpriteRenderer.flipX == true)
-        // {
-        //     updateDirection(-10);
-        // }
-
-       // bulletBehaviour(PlayerRef);
+        
 
     }
     void OnCollisionEnter2D(Collision2D col)

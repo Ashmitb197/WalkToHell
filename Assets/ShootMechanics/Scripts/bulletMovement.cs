@@ -7,19 +7,14 @@ public class bulletMovement : MonoBehaviour
 
     protected int direction;
 
-    public float fireSpeed;
-
    
-    // Start is called before the first frame update
-    void Start()
-    {
-        fireSpeed = 8;
-    }
+    
 
     // Update is called once per frame
-    public void bulletBehaviour(Rigidbody2D bulletrigidBody, GameObject self)
+    public void bulletBehaviour(Rigidbody2D bulletrigidBody, GameObject self, int fireSpeed)
     {
-        bulletrigidBody.velocity = self.transform.right*fireSpeed*Time.deltaTime;
+
+        bulletrigidBody.velocity = self.transform.up*fireSpeed*Time.deltaTime;
     }
 
     protected void CollisionCheck(Collision2D col)
@@ -29,10 +24,5 @@ public class bulletMovement : MonoBehaviour
             Destroy(gameObject);
         }
 
-    }
-
-    public void updateDirection(int direction)
-    {
-        this.direction = direction;
     }
 }
