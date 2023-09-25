@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 8619990501949446152}
   - component: {fileID: 8619990501949446155}
   - component: {fileID: 8619990501949446154}
+  - component: {fileID: 1960438198}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -135,7 +136,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 8f99ca6cef83fec44887c706f4c467c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -162,12 +163,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 4
   m_Material: {fileID: 6200000, guid: d41c2404507e1ef4ea7b78153df496c5, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8619990501949446159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,28 +181,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d8969595aeb8f418baa9b1a43f2de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 2
+  jumpforce: 15
   anime: {fileID: 8619990501949446157}
   rb: {fileID: 8619990501949446144}
   player: {fileID: 8619990501949446145}
-  move: {x: 0, y: 0}
-  right: 0
   sr: {fileID: 8619990501949446146}
   ground:
     serializedVersion: 2
     m_Bits: 256
-  feet: {fileID: 8619990501465025711}
-  jumpforce: 10
-  clouds: {fileID: 0}
   source: {fileID: 8619990501949446155}
   clip: {fileID: 8300000, guid: c2a15d26b2fc68649898ad59a1c272b7, type: 3}
-  openMouth: 0
   foodLayer:
     serializedVersion: 2
     m_Bits: 8
-  RayEndPoint: 0
   Gun: {fileID: 8619990502395802192}
   bulletPrefab: {fileID: 6267056527790535711, guid: d6f0f0b6d6a72f74e9aadaea66dd03f5,
     type: 3}
+  openMouth: 0
+  feet: {fileID: 8619990501465025711}
+  RayEndPoint: 0
+  isFacingLeft: 0
+  HorizontalInput: 0
 --- !u!61 &8619990501949446147
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -256,6 +257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8985f59763dcaf543a962d38b2e84859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 8619990501949446144}
+  isClimbing: 0
+  nearStairs: 0
 --- !u!114 &8619990501949446152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,17 +375,48 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8619990501949446145}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf6eeeaa98923484e8837e97ed9b8eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  isClimbing: 0
+  nearStairs: 0
   gateDamage: 5
   enemyDamage: 30
+  fallDamage: 4
+  bulletDamage: 37
+  maxHealth: 101
+--- !u!114 &1960438198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8619990501949446145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7cb67f8183411499f75d7fb2015ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  isClimbing: 0
+  nearStairs: 0
+  gateDamage: 5
+  enemyDamage: 30
+  fallDamage: 4
+  bulletDamage: 37
+  maxHealth: 100
+  playerHealth: 0
   healthBar: {fileID: 0}
   healthSilder: {fileID: 0}
-  maxHealth: 101
-  health: 100
+  gameOverCanvas: {fileID: 0}
+  isDead: 0
+  graveType: 1
+  gravePrefab:
+  - {fileID: 1612625704046151251, guid: 6def9555330d51348a3ca9ebeffc516c, type: 3}
+  - {fileID: 8294143644739465924, guid: a04549e99c524d44c9a206b9cf975b2b, type: 3}
 --- !u!1 &8619990502395802192
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +441,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8619990502395802192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.85, y: 0, z: 0}
+  m_LocalPosition: {x: 1.11, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

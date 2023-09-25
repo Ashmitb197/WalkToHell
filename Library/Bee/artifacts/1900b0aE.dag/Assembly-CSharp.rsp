@@ -29,6 +29,7 @@
 -define:PLATFORM_ARCH_64
 -define:UNITY_64
 -define:UNITY_INCLUDE_TESTS
+-define:UNITY_ANALYTICS
 -define:ENABLE_AR
 -define:ENABLE_AUDIO
 -define:ENABLE_CACHING
@@ -364,7 +365,7 @@
 "Assets/Player/Scripts/enviornment_movements.cs"
 "Assets/Player/Scripts/InGameMenu.cs"
 "Assets/Player/Scripts/Main_MenuScene.cs"
-"Assets/Player/Scripts/movement_behaviour.cs"
+"Assets/Player/Scripts/Movement_behaviour.cs"
 "Assets/ShootMechanics/Scripts/bulletMovement.cs"
 "Assets/ShootMechanics/Scripts/playerBullet.cs"
 "Assets/UISystem/GameOverScreen/SceneSelection.cs"
