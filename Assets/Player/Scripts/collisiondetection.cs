@@ -37,38 +37,45 @@ public class collisiondetection : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-
-		if(isClimbing)
+		if(rb)
 		{
-			rb.velocity = new Vector2(0, vertical * 3);
-		}
+			if(isClimbing)
+			{
+				rb.velocity = new Vector2(0, vertical * 3);
+			}
 		// else
 		// {
 			
 		// }
-
+		}
 		
 	}
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-
-		if(col.tag == "Ladder")
+		if(rb)
 		{
-			nearStairs = true;
+
+			if(col.tag == "Ladder")
+			{
+				nearStairs = true;
 				
-			rb.gravityScale = 0;
+				rb.gravityScale = 0;
 			
-		}
+			}
+		}	
 	}
 	void OnTriggerExit2D(Collider2D col)
 	{
-		if(col.tag == "Ladder")
+		if(rb)
 		{
-			nearStairs = false;
-			isClimbing = false;
-			rb.gravityScale = 4;
+			if(col.tag == "Ladder")
+			{
+				nearStairs = false;
+				isClimbing = false;
+				rb.gravityScale = 4;
 
+			}
 		}
 	}
 
