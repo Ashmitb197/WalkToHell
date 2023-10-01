@@ -40,6 +40,8 @@ public class Movement_behaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		Cursor.visible =false;
+
 		anime = gameObject.GetComponent<Animator>();
 		rb = gameObject.GetComponent<Rigidbody2D>();
 		sr = gameObject.GetComponent<SpriteRenderer>();
@@ -49,6 +51,7 @@ public class Movement_behaviour : MonoBehaviour {
 
 	void Update()
 	{
+		
 		HorizontalInput = Input.GetAxisRaw("Horizontal");
 	}
 	
@@ -75,11 +78,13 @@ public class Movement_behaviour : MonoBehaviour {
 			anime.SetBool("Walking", true);
 			if(HorizontalInput < 0 && isFacingLeft)
 			{
-				flip();
+				flip(gameObject);
+				//flip(bulletPrefab);
 			}
 			else if(HorizontalInput > 0 && !isFacingLeft)
 			{
-				flip();
+				flip(gameObject);
+				//flip(bulletPrefab);
 			}
 
 		}
@@ -93,19 +98,21 @@ public class Movement_behaviour : MonoBehaviour {
 	
 	void Jump()
 	{
-		if(Input.GetKeyDown("space") && IsGrounded())
+
+		float jumpKeyPressedCheck = Input.GetAxisRaw("Jump");
+		if(jumpKeyPressedCheck == 1 && IsGrounded())
 		{
 			Vector2 jump_movement = new Vector2(rb.velocity.x, jumpforce);
 			anime.SetBool("Jump", true);
 			rb.velocity = jump_movement;
 
-			if(sr.flipX == true)
-			{
-				sr.flipX = true;
-			}
-			else{
-				sr.flipX = false;
-			}
+			// if(sr.flipX == true)
+			// {
+			// 	sr.flipX = true;
+			// }
+			// else{
+			// 	sr.flipX = false;
+			// }
 		}
 
 
@@ -117,10 +124,14 @@ public class Movement_behaviour : MonoBehaviour {
 
 	void shootBullet()
 	{
-		if(Input.GetKeyDown(KeyCode.E))
+		bulletPrefab.GetComponent<Rigidbody2D> ().velocity = bulletPrefab.transform.up * 140;
+		if(Input.GetKeyDown("e"))
 		{
-			Instantiate(bulletPrefab, Gun.transform.position, bulletPrefab.transform.rotation);
+			Instantiate(bulletPrefab, Gun.transform.position, Gun.transform.rotation);
+			//if(bulletPrefab)
+            	
 		}
+		
 	}
 
 	public bool IsGrounded()
@@ -166,10 +177,10 @@ public class Movement_behaviour : MonoBehaviour {
 		
 	}
 
-	void flip()
+	void flip(GameObject flippingObject)
 	{
 		isFacingLeft = !isFacingLeft;
-		transform.Rotate(0f,180f,0f);
+		flippingObject.transform.Rotate(0f,180f,0f);
 	}
 
 	public bool getIsFacingLeft()

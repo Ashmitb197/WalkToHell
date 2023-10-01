@@ -7,22 +7,37 @@ public class bulletMovement : MonoBehaviour
 
     protected int direction;
 
-   
+    public GameObject PlayerRef;
+    public Rigidbody2D rb;
+    public Movement_behaviour pMovementScript;
+
+    [Range(500, 2000)] public int fireSpeed;
+
+   void Awake()
+   {
+        PlayerRef = GameObject.Find("Player");
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        pMovementScript = PlayerRef.GetComponent<Movement_behaviour>();
+
+        //rb.velocity = transform.right*fireSpeed*Time.deltaTime;
+        fireSpeed = 700;
+   }
+
+   void Start()
+   {
+        rb.velocity = transform.up*fireSpeed*Time.deltaTime;
+   }
     
 
-    // Update is called once per frame
-    public void bulletBehaviour(Rigidbody2D bulletrigidBody, GameObject self, int fireSpeed)
-    {
 
-        bulletrigidBody.velocity = self.transform.up*fireSpeed*Time.deltaTime;
-    }
-
-    protected void CollisionCheck(Collision2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if((col.collider != null) && (col.collider.tag != "Coins"))
+        if((col.collider != null) && (col.collider.tag != "Bullet"))
         {
             Destroy(gameObject);
         }
+
+
 
     }
 }

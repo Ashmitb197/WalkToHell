@@ -19,6 +19,12 @@ public class MovementBehaviour : MonoBehaviour
     public bool CollisionWithPlayer= false;
 
     public bool playerTraced;
+
+    public bool isTurnedRight;
+
+    public GameObject gunRef;
+    public GameObject bulletPrefab;
+
     void Start()
     {
         movementDirection = 1;
@@ -47,7 +53,7 @@ public class MovementBehaviour : MonoBehaviour
         RaycastHit2D leftTrace =  Physics2D.Raycast(transform.position, Vector2.right, 1, groundMask);
         Debug.DrawRay(transform.position, Vector2.right* 1, Color.red);
         if(leftTrace.collider != null)
-            movementDirection = -1;
+            flipX(gameObject);
     }
 
     void rightWallTrace()
@@ -55,26 +61,30 @@ public class MovementBehaviour : MonoBehaviour
         RaycastHit2D rightTrace =  Physics2D.Raycast(transform.position, Vector2.right, -1, groundMask);
         Debug.DrawRay(transform.position, Vector2.right* -1, Color.red);
         if(rightTrace.collider != null)
-            movementDirection = 1;
+            flipX(gameObject);
     }
 
     void headTrace()
     {
-        RaycastHit2D TraceOnHead = Physics2D.Raycast(transform.position, Vector2.up, 1, playerMask);
-        Debug.DrawRay(transform.position, Vector2.up*1, Color.yellow);
+        RaycastHit2D TraceOnHead = Physics2D.Raycast(transform.position, Vector2.up, 0.5f, playerMask);
+        Debug.DrawRay(transform.position, Vector2.up*0.5f, Color.yellow);
         if(TraceOnHead.collider != null && CollisionWithPlayer == true)
             Destroy(gameObject);
     }
 
     void PlayerTrace()
     {
-        RaycastHit2D TracePlayer = Physics2D.Raycast(transform.position, Vector2.right, movementDirection*8, playerMask);
-        Debug.DrawRay(transform.position, Vector2.right* movementDirection*8, Color.green);
+        RaycastHit2D TracePlayer = Physics2D.Raycast(transform.position, Vector2.right, transform.right.x*8, playerMask);
+        Debug.DrawRay(transform.position, Vector2.right* transform.right.x*8, Color.green);
 
         if(TracePlayer.collider != null)
         {
-            enemySpeed = 2;
-            movementDirection = playerRef.transform.position.y;
+            enemySpeed = 0;
+            StartCoroutine(shootBullet());
+        }
+        else
+        {
+            enemySpeed = 1;
         }
             //movementDirection
     }
@@ -85,6 +95,20 @@ public class MovementBehaviour : MonoBehaviour
         {
             CollisionWithPlayer = true;
         }
+    }
+
+    void flipX(GameObject flippingObject)
+    {
+        isTurnedRight = !isTurnedRight;
+
+        flippingObject.transform.Rotate(0, 180f, 0);
+    }
+
+    IEnumerator shootBullet()
+    {
+        Instantiate(bulletPrefab, gunRef.transform.position, gunRef.transform.rotation);
+        yield return new WaitForSeconds(10);
+       
     }
 
 }

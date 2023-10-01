@@ -19,7 +19,9 @@ public class UIManagment : MonoBehaviour
     {  
         if(player == null)
         {
+
             Invoke("activateGameOverCanvas", 3);
+            Cursor.visible = true;
         }
         
     }

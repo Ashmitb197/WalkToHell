@@ -65,6 +65,7 @@ public class PlayerHealthScript : HealthSystem
         {
             isDead = true;
             Instantiate(gravePrefab[graveType], transform.position+graveAddOffset, transform.rotation);
+
         }
         else
         {
