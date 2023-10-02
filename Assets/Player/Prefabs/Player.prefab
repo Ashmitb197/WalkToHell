@@ -203,6 +203,8 @@ MonoBehaviour:
   RayEndPoint: 0
   isFacingLeft: 0
   HorizontalInput: 0
+  lastShot: 0
+  fireRate: 0.5
 --- !u!61 &8619990501949446147
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -37,6 +37,10 @@ public class Movement_behaviour : MonoBehaviour {
 
 	public float HorizontalInput;
 
+	public float mouseXInput;
+	public float mouseYInput;
+	public float rotationSpeed;	
+
 	[Header("\nGun Variables")]
 	public float lastShot;
 	public float fireRate;
@@ -59,6 +63,11 @@ public class Movement_behaviour : MonoBehaviour {
 	{
 		
 		HorizontalInput = Input.GetAxisRaw("Horizontal");
+
+		mouseXInput = Input.GetAxis("Mouse X");
+		mouseYInput = Input.GetAxis("Mouse Y");
+		
+		Gun.transform.Rotate(new Vector3(0, 0, mouseYInput*rotationSpeed));
 	}
 	
 	
@@ -136,6 +145,8 @@ public class Movement_behaviour : MonoBehaviour {
 			Instantiate(bulletPrefab, Gun.transform.position, Gun.transform.rotation);
 			//if(bulletPrefab)
 			lastShot = Time.time;
+
+			rb.AddForce(-Gun.transform.up*4, ForceMode2D.Impulse);
             	
 		}
 		
