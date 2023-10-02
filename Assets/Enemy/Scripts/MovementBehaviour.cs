@@ -19,6 +19,8 @@ public class MovementBehaviour : MonoBehaviour
     public bool CollisionWithPlayer= false;
 
     public bool playerTraced;
+    public float lastShot;
+    public float fireRate;
 
     public bool isTurnedRight;
 
@@ -27,6 +29,8 @@ public class MovementBehaviour : MonoBehaviour
 
     void Start()
     {
+        lastShot = 0.0f;
+        fireRate = 1.5f;
         movementDirection = 1;
         enemySpeed = 1;
     }
@@ -80,7 +84,11 @@ public class MovementBehaviour : MonoBehaviour
         if(TracePlayer.collider != null)
         {
             enemySpeed = 0;
-            StartCoroutine(shootBullet());
+            if(Time.time > lastShot+fireRate)
+            {
+                StartCoroutine(shootBullet());
+                lastShot = Time.time;
+            }
         }
         else
         {
@@ -106,8 +114,9 @@ public class MovementBehaviour : MonoBehaviour
 
     IEnumerator shootBullet()
     {
+        
         Instantiate(bulletPrefab, gunRef.transform.position, gunRef.transform.rotation);
-        yield return new WaitForSeconds(10);
+        yield return null;
        
     }
 

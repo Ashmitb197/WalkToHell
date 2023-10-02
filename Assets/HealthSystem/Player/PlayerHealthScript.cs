@@ -90,6 +90,10 @@ public class PlayerHealthScript : HealthSystem
             playerHealth -= enemyDamage;
         }
 
+        if(col.collider.tag == "Bullet")
+        {
+            playerHealth -= bulletDamage;
+        }
         
     }
 

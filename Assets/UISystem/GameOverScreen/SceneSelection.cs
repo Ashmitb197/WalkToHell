@@ -8,6 +8,7 @@ public class SceneSelection : MonoBehaviour
 
     public Scene Scene;
     public string currentScene;
+    //public GameObject gameOverCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +30,10 @@ public class SceneSelection : MonoBehaviour
     public void restartScene()
     {
         SceneManager.LoadScene(currentScene);
+    }
+    public void resumeScene()
+    {
+        Time.timeScale = 1;
+        gameObject.SetActive(false);
     }
 }

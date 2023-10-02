@@ -43,8 +43,14 @@ public class Main_MenuScene : MonoBehaviour {
 	}
 	public void Quit()
 	{
-		Application.Quit();
+		
 		source.clip = sounds[1];
 		source.Play();
+		Invoke("quittingApplication", 2);
+	}
+
+	void quittingApplication()
+	{
+		Application.Quit();
 	}
 }

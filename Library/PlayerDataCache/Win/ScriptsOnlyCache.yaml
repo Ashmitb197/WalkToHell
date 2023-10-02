@@ -94,6 +94,9 @@ ScriptsOnlyBuild:
     methodName: Fullscreen
   - assembly: Assembly-CSharp
     fullTypeName: SceneSelection
+    methodName: resumeScene
+  - assembly: Assembly-CSharp
+    fullTypeName: SceneSelection
     methodName: goToMainMenu
   - assembly: Assembly-CSharp
     fullTypeName: SceneSelection
@@ -114,11 +117,17 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 82
       Script: {instanceID: 0}
     - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -139,15 +148,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3080}
     - Class: 114
-      Script: {instanceID: 3368}
+      Script: {instanceID: 3366}
     - Class: 114
-      Script: {instanceID: 3658}
+      Script: {instanceID: 3656}
     - Class: 114
-      Script: {instanceID: 3800}
+      Script: {instanceID: 3798}
     - Class: 114
-      Script: {instanceID: 5260}
+      Script: {instanceID: 5258}
     - Class: 114
-      Script: {instanceID: 5652}
+      Script: {instanceID: 5650}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -220,31 +229,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3080}
     - Class: 114
-      Script: {instanceID: 3368}
+      Script: {instanceID: 3366}
     - Class: 114
-      Script: {instanceID: 3658}
+      Script: {instanceID: 3656}
     - Class: 114
-      Script: {instanceID: 3748}
+      Script: {instanceID: 3746}
     - Class: 114
-      Script: {instanceID: 3800}
+      Script: {instanceID: 3798}
     - Class: 114
-      Script: {instanceID: 3924}
+      Script: {instanceID: 3922}
     - Class: 114
-      Script: {instanceID: 4280}
+      Script: {instanceID: 4278}
     - Class: 114
-      Script: {instanceID: 4626}
+      Script: {instanceID: 4624}
     - Class: 114
-      Script: {instanceID: 4762}
+      Script: {instanceID: 4760}
     - Class: 114
-      Script: {instanceID: 5286}
+      Script: {instanceID: 5284}
     - Class: 114
-      Script: {instanceID: 5432}
+      Script: {instanceID: 5430}
     - Class: 114
-      Script: {instanceID: 5484}
+      Script: {instanceID: 5482}
     - Class: 114
-      Script: {instanceID: 5666}
+      Script: {instanceID: 5664}
     - Class: 114
-      Script: {instanceID: 6346}
+      Script: {instanceID: 6344}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -564,7 +573,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 866e949a643f3b17010ae89277bec804
+      Hash: 71a4611228662d7434ebe5257d4070d3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Movement_behaviour
@@ -810,7 +819,7 @@ ScriptsOnlyBuild:
     className: IAPListener
   - hash:
       serializedVersion: 2
-      Hash: 76c1f4e33b1ec0425dff4baf2379abc1
+      Hash: 53bf1e3e680b1740dfc30a2f45bc2524
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MovementBehaviour

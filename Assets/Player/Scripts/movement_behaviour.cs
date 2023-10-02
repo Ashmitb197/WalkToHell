@@ -37,10 +37,16 @@ public class Movement_behaviour : MonoBehaviour {
 
 	public float HorizontalInput;
 
+	[Header("\nGun Variables")]
+	public float lastShot;
+	public float fireRate;
+
+
 	// Use this for initialization
 	void Start () {
 
 		Cursor.visible =false;
+		Time.timeScale = 1;
 
 		anime = gameObject.GetComponent<Animator>();
 		rb = gameObject.GetComponent<Rigidbody2D>();
@@ -125,10 +131,11 @@ public class Movement_behaviour : MonoBehaviour {
 	void shootBullet()
 	{
 		bulletPrefab.GetComponent<Rigidbody2D> ().velocity = bulletPrefab.transform.up * 140;
-		if(Input.GetKeyDown("e"))
+		if(Input.GetKey("e") && Time.time> lastShot+fireRate)
 		{
 			Instantiate(bulletPrefab, Gun.transform.position, Gun.transform.rotation);
 			//if(bulletPrefab)
+			lastShot = Time.time;
             	
 		}
 		
