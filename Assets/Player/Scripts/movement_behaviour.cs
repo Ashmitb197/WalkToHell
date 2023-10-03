@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -67,7 +67,11 @@ public class Movement_behaviour : MonoBehaviour {
 		mouseXInput = Input.GetAxis("Mouse X");
 		mouseYInput = Input.GetAxis("Mouse Y");
 		
-		Gun.transform.Rotate(new Vector3(0, 0, mouseYInput*rotationSpeed));
+		// Gun.transform.Rotate(new Vector3(0, 0, mouseYInput*rotationSpeed));
+
+
+		
+
 	}
 	
 	
@@ -78,10 +82,18 @@ public class Movement_behaviour : MonoBehaviour {
 		shootBullet();
 		IsGrounded();
 		foodCheck();
+		gunControledRotation();
 
 	}
 
 
+	void gunControledRotation()
+	{
+		Vector3 rot = Gun.transform.rotation.eulerAngles + new Vector3(0, 0, mouseYInput*rotationSpeed);
+        rot.z = Mathf.Clamp(rot.z, 240, 310f);
+
+		Gun.transform.eulerAngles = rot;
+	}
 
 	void walk()
 	{

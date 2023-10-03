@@ -20,12 +20,12 @@ public class bulletMovement : MonoBehaviour
         pMovementScript = PlayerRef.GetComponent<Movement_behaviour>();
 
         //rb.velocity = transform.right*fireSpeed*Time.deltaTime;
-        fireSpeed = 700;
+        fireSpeed = 10;
    }
 
    void Start()
    {
-        rb.velocity = transform.up*fireSpeed*Time.deltaTime;
+        rb.velocity = transform.up*fireSpeed;//*Time.deltaTime;
    }
     
 
