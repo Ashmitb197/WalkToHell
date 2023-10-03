@@ -24,10 +24,6 @@ This repository contains the data for a 2D pixelated platformer game inspired by
 
 If you would like to contribute to the game, fork the repository and create a new branch for your changes. Once you are finished, please submit a pull request.
 
-## License
-
-This game is licensed under the Void Entertainment.
-
 ## Contact
 
 If you have any questions or feedback, please feel free to contact me at ashmitb189@outlook.com.
