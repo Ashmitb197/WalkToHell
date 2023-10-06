@@ -29,6 +29,8 @@ public class Movement_behaviour : MonoBehaviour {
 	public bool openMouth;
 
 	public Transform feet;
+
+	public shootingMechanism shootingMechanismScript;
 	
 	public float RayEndPoint;
 
@@ -79,7 +81,7 @@ public class Movement_behaviour : MonoBehaviour {
 	void FixedUpdate () {
 		walk();
 		Jump();
-		shootBullet();
+		shootingMechanismScript.shootBullet(Gun, rb, bulletPrefab);
 		IsGrounded();
 		foodCheck();
 		gunControledRotation();
@@ -149,20 +151,7 @@ public class Movement_behaviour : MonoBehaviour {
 		}
 	}
 
-	void shootBullet()
-	{
-		bulletPrefab.GetComponent<Rigidbody2D> ().velocity = bulletPrefab.transform.up * 140;
-		if(Input.GetKey("e") && Time.time> lastShot+fireRate)
-		{
-			Instantiate(bulletPrefab, Gun.transform.position, Gun.transform.rotation);
-			//if(bulletPrefab)
-			lastShot = Time.time;
-
-			rb.AddForce(-Gun.transform.up*4, ForceMode2D.Impulse);
-            	
-		}
-		
-	}
+	
 
 	public bool IsGrounded()
 	{

@@ -24,7 +24,6 @@ public class HealthSystem :  damageData
     public void automateBulletDamage()
     {
         bulletDamage = Random.Range(37, 48);
-        Debug.Log(bulletDamage);
     }
 
 
