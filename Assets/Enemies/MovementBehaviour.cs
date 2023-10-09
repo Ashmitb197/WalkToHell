@@ -20,12 +20,14 @@ public class MovementBehaviour : MonoBehaviour
 
     public bool CollisionWithPlayer= false;
 
+    public Rigidbody2D selfRigidBody;
 
 
     void Start()
     {
+        selfRigidBody = gameObject.GetComponent<Rigidbody2D>();
         movementDirection = 1;
-        enemySpeed = 1;
+        enemySpeed = 100;
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class MovementBehaviour : MonoBehaviour
         
         headTrace();
 
+        //selfRigidBody.velocity  = Vector2.right* enemySpeed;
         transform.Translate(movementDirection* enemySpeed*Time.deltaTime,0,0);
 
     }

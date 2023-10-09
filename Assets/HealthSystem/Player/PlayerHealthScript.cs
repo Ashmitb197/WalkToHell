@@ -26,9 +26,9 @@ public class PlayerHealthScript : HealthSystem
         
         
 
-        healthBar = GameObject.Find("Canvas/HealthBar");
-        healthSilder = healthBar.GetComponent<Slider>();
-        gameOverCanvas = GameObject.Find("GameOverCanvas");
+        //healthBar = GameObject.Find("Canvas/HealthBar");
+        //healthSilder = healthBar.GetComponent<Slider>();
+        //gameOverCanvas = GameObject.Find("GameOverCanvas");
 
         gameOverCanvas.SetActive(false);
 
@@ -65,13 +65,19 @@ public class PlayerHealthScript : HealthSystem
         {
             isDead = true;
             Instantiate(gravePrefab[graveType], transform.position+graveAddOffset, transform.rotation);
-
+            Invoke("getGameOverScreen", 3);
         }
         else
         {
             isDead = false;
         }
         die(isDead);
+    }
+
+
+    void getGameOverScreen()
+    {
+        gameOverCanvas.SetActive(true);
     }
 
     public void OnCollisionEnter2D(Collision2D col)
