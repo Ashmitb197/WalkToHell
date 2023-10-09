@@ -35,4 +35,12 @@ public class EnemyHealthSystem : HealthSystem
             enemyHealth -= bulletDamage;
         }
     }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.tag == "Sword")
+        {
+            enemyHealth -= swordDamage;
+        }
+    }
+
 }

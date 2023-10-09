@@ -81,7 +81,7 @@ public class Movement_behaviour : MonoBehaviour {
 	void FixedUpdate () {
 		walk();
 		Jump();
-		shootingMechanismScript.shootBullet(Gun, rb, bulletPrefab);
+		//shootingMechanismScript.shootBullet(Gun, rb, bulletPrefab);
 		IsGrounded();
 		foodCheck();
 		gunControledRotation();

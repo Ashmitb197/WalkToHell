@@ -11,6 +11,8 @@ public class damageData : collisiondetection
     public int fallDamage = 4;    //TO DO
     public int bulletDamage = 37;
 
+    public int swordDamage = 10;
+
 }
 public class HealthSystem :  damageData
 {
