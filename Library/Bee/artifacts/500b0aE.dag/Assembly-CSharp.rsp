@@ -27,6 +27,7 @@
 -define:UNITY_2021_2_OR_NEWER
 -define:UNITY_2021_3_OR_NEWER
 -define:UNITY_INCLUDE_TESTS
+-define:UNITY_ANALYTICS
 -define:ENABLE_AR
 -define:ENABLE_AUDIO
 -define:ENABLE_CACHING
@@ -368,6 +369,7 @@
 "Assets/Player/Scripts/Main_MenuScene.cs"
 "Assets/Player/Scripts/Movement_behaviour.cs"
 "Assets/Player/Scripts/shootingMechanism.cs"
+"Assets/Prefabs/Leveled_Assets/L1_Forest/Mushroom/Scripts/MushroomMech.cs"
 "Assets/ShootMechanics/Scripts/bulletMovement.cs"
 "Assets/UISystem/GameOverScreen/SceneSelection.cs"
 "Assets/UISystem/Managment/UIManagment.cs"
