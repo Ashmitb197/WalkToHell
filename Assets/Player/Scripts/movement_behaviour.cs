@@ -23,7 +23,7 @@ public class Movement_behaviour : MonoBehaviour {
 	public LayerMask  foodLayer;
 	public GameObject Gun;
 	public GameObject bulletPrefab;
-	
+	public GameObject muzzleRefrence;
 
 	[Header("\nOtherVariables\n")]
 	public bool openMouth;
@@ -46,6 +46,7 @@ public class Movement_behaviour : MonoBehaviour {
 	[Header("\nGun Variables")]
 	public float lastShot;
 	public float fireRate;
+	public WeaponSelector weaponSelectScript;
 
 
 	// Use this for initialization
@@ -72,7 +73,7 @@ public class Movement_behaviour : MonoBehaviour {
 		// Gun.transform.Rotate(new Vector3(0, 0, mouseYInput*rotationSpeed));
 
 
-		
+		muzzleRefrence = transform.Find("PivotPoint").gameObject.transform.Find("Weapons").gameObject.transform.GetChild(weaponSelectScript.selectedWeapon).gameObject.transform.Find("Muzzle").gameObject;
 
 	}
 	
@@ -81,9 +82,12 @@ public class Movement_behaviour : MonoBehaviour {
 	void FixedUpdate () {
 		walk();
 		Jump();
-		//shootingMechanismScript.shootBullet(Gun, rb, bulletPrefab);
+		if(weaponSelectScript.isGunSelected)
+		{
+			shootingMechanismScript.shootBullet(Gun, rb, bulletPrefab, muzzleRefrence);
+		}
 		IsGrounded();
-		foodCheck();
+		//foodCheck();
 		gunControledRotation();
 
 	}
@@ -163,38 +167,38 @@ public class Movement_behaviour : MonoBehaviour {
 		return false;
 	}
 
-	void foodCheck()
-	{
+	// void foodCheck()
+	// {
 		
 
-		Vector3 loweringRay = new Vector3(0,0.3f,0);
-		Color colorofRay = Color.red;
+	// 	Vector3 loweringRay = new Vector3(0,0.3f,0);
+	// 	Color colorofRay = Color.red;
 
-		//Getting Player Direction
-		Vector2 playerDirectionForRay = Vector2.right;
-		RayEndPoint = 2*HorizontalInput;
+	// 	//Getting Player Direction
+	// 	Vector2 playerDirectionForRay = Vector2.right;
+	// 	RayEndPoint = 2*HorizontalInput;
 
 
-		Vector2 forward = transform.TransformDirection(Vector2.right) * 2;
-		//Vector3 loweringRay = new Vector3(0,0.3f,0);
-		RaycastHit2D foodCheckRay = Physics2D.Raycast(transform.position - loweringRay, playerDirectionForRay, RayEndPoint, foodLayer);
+	// 	Vector2 forward = transform.TransformDirection(Vector2.right) * 2;
+	// 	//Vector3 loweringRay = new Vector3(0,0.3f,0);
+	// 	RaycastHit2D foodCheckRay = Physics2D.Raycast(transform.position - loweringRay, playerDirectionForRay, RayEndPoint, foodLayer);
 		
-		//Debug.Log(foodCheckRay.collider.tag);
+	// 	//Debug.Log(foodCheckRay.collider.tag);
 
-		if(foodCheckRay.collider != null)
-		{
-			colorofRay = Color.green;
-		}
+	// 	if(foodCheckRay.collider != null)
+	// 	{
+	// 		colorofRay = Color.green;
+	// 	}
 
-		Debug.DrawRay(transform.position - loweringRay, Vector2.right*RayEndPoint, colorofRay);
+	// 	Debug.DrawRay(transform.position - loweringRay, Vector2.right*RayEndPoint, colorofRay);
 
-		// if(foodCheckRay.collider.tag == "Coins")
-		// {
-		// 	openMouth = true;
-		// }
+	// 	// if(foodCheckRay.collider.tag == "Coins")
+	// 	// {
+	// 	// 	openMouth = true;
+	// 	// }
 
 		
-	}
+	// }
 
 	void flip(GameObject flippingObject)
 	{
