@@ -801,11 +801,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 0a7fc598-a3c2-46c1-8e99-bcd98fa5f1e2
+  cloudProjectId: cc42777e-a213-44e4-85d8-587211097dc2
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: walktohell (1)
-  organizationId: astroskoll
+  projectName: walktohell
+  organizationId: albin077
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 1
   playerDataPath: 
