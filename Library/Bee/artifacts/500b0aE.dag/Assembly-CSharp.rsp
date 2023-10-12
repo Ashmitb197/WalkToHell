@@ -364,7 +364,7 @@
 "Assets/Player/Scripts/enviornment_movements.cs"
 "Assets/Player/Scripts/InGameMenu.cs"
 "Assets/Player/Scripts/Main_MenuScene.cs"
-"Assets/Player/Scripts/Movement_behaviour.cs"
+"Assets/Player/Scripts/movement_behaviour.cs"
 "Assets/Player/Scripts/shootingMechanism.cs"
 "Assets/Player/Scripts/WeaponSelector.cs"
 "Assets/Prefabs/Leveled_Assets/L1_Forest/Mushroom/Scripts/MushroomMech.cs"
