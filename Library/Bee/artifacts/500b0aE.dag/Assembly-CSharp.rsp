@@ -366,6 +366,7 @@
 "Assets/Player/Scripts/Main_MenuScene.cs"
 "Assets/Player/Scripts/Movement_behaviour.cs"
 "Assets/Player/Scripts/shootingMechanism.cs"
+"Assets/Player/Scripts/WeaponSelector.cs"
 "Assets/Prefabs/Leveled_Assets/L1_Forest/Mushroom/Scripts/MushroomMech.cs"
 "Assets/ShootMechanics/Scripts/bulletMovement.cs"
 "Assets/UISystem/GameOverScreen/SceneSelection.cs"
