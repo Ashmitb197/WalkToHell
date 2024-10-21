@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4962213281746049894}
   - component: {fileID: 2265387136033940403}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roseFlower
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ public class bulletMovement : MonoBehaviour
    void Awake()
    {
 
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        //rb = gameObject.GetComponent<Rigidbody2D>();
 
         //rb.velocity = transform.right*fireSpeed*Time.deltaTime;
         fireSpeed = 1800;
@@ -19,7 +19,7 @@ public class bulletMovement : MonoBehaviour
 
    void Start()
    {
-        rb.velocity = transform.up*fireSpeed*Time.deltaTime;//*Time.deltaTime;
+        gameObject.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * 140;//*Time.deltaTime;
    }
     
 

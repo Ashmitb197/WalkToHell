@@ -7,11 +7,11 @@ public class MovementBehaviour : MonoBehaviour
     
     // Start is called before the first frame update
 
-    public LayerMask groundMask;
+    
 
     public GameObject playerRef;
 
-    public LayerMask playerMask;
+    public LayerMask[] Masks;
     float movementDirection;
 
     public bool isTurnedRight;
@@ -50,7 +50,7 @@ public class MovementBehaviour : MonoBehaviour
 
     void leftWallTrace()
     {
-        RaycastHit2D leftTrace =  Physics2D.Raycast(transform.position, Vector2.right, 1, groundMask);
+        RaycastHit2D leftTrace =  Physics2D.Raycast(transform.position, Vector2.right, 1, Masks[1] | Masks[2]);
         Debug.DrawRay(transform.position, Vector2.right* 1, Color.red);
         if(leftTrace.collider != null)
             flipX(gameObject);
@@ -58,7 +58,7 @@ public class MovementBehaviour : MonoBehaviour
 
     void rightWallTrace()
     {
-        RaycastHit2D rightTrace =  Physics2D.Raycast(transform.position, Vector2.right, -1, groundMask);
+        RaycastHit2D rightTrace =  Physics2D.Raycast(transform.position, Vector2.right, -1, Masks[1] | Masks[2]);
         Debug.DrawRay(transform.position, Vector2.right* -1, Color.red);
         if(rightTrace.collider != null)
             flipX(gameObject);
@@ -66,7 +66,7 @@ public class MovementBehaviour : MonoBehaviour
 
     void headTrace()
     {
-        RaycastHit2D TraceOnHead = Physics2D.Raycast(transform.position, Vector2.up, 0.5f, playerMask);
+        RaycastHit2D TraceOnHead = Physics2D.Raycast(transform.position, Vector2.up, 0.5f, Masks[0]);
         Debug.DrawRay(transform.position, Vector2.up*0.5f, Color.yellow);
         if(TraceOnHead.collider != null && CollisionWithPlayer == true)
             Destroy(gameObject);

@@ -72,8 +72,8 @@ public class Movement_behaviour : MonoBehaviour {
 		
 		// Gun.transform.Rotate(new Vector3(0, 0, mouseYInput*rotationSpeed));
 
-
-		muzzleRefrence = transform.Find("PivotPoint").gameObject.transform.Find("Weapons").gameObject.transform.GetChild(weaponSelectScript.selectedWeapon).gameObject.transform.Find("Muzzle").gameObject;
+		if(weaponSelectScript.isGunSelected)
+			muzzleRefrence = transform.Find("PivotPoint").gameObject.transform.Find("Weapons").gameObject.transform.GetChild(weaponSelectScript.selectedWeapon).gameObject.transform.Find("Muzzle").gameObject;
 
 	}
 	

@@ -18,6 +18,8 @@ public class PlayerTracing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        gunRef = gameObject.transform.GetChild(0).gameObject;
         
     }
 
@@ -30,7 +32,7 @@ public class PlayerTracing : MonoBehaviour
 
     void PlayerTrace()
     {
-        RaycastHit2D TracePlayer = Physics2D.Raycast(transform.position, Vector2.right, transform.right.x*8, enemyMovementScript.playerMask);
+        RaycastHit2D TracePlayer = Physics2D.Raycast(transform.position, Vector2.right, transform.right.x*8, enemyMovementScript.Masks[0]);
         Debug.DrawRay(transform.position, Vector2.right* transform.right.x*8, Color.green);
 
         if(TracePlayer.collider != null)
@@ -38,12 +40,15 @@ public class PlayerTracing : MonoBehaviour
             enemyMovementScript.enemySpeed = 0;
             if(Time.time > lastShot+fireRate)
             {
+                
                 StartCoroutine(shootBullet());
+                
                 lastShot = Time.time;
             }
         }
         else
         {
+            Time.timeScale = 1f;
             enemyMovementScript.enemySpeed = 1;
         }
             //movementDirection
@@ -51,8 +56,11 @@ public class PlayerTracing : MonoBehaviour
 
     IEnumerator shootBullet()
     {
+
         
-        Instantiate(bulletPrefab, gunRef.transform.position, gunRef.transform.rotation);
+        
+        Instantiate(bulletPrefab, gunRef.transform.GetChild(0).gameObject.transform.position, gunRef.transform.rotation);
+        Time.timeScale = 0.1f;
         yield return null;
        
     }

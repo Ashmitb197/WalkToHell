@@ -7,6 +7,9 @@ public class WeaponSelector : MonoBehaviour
     public int selectedWeapon = 0;
 
     public bool isGunSelected;
+
+    public bool assultSelected;
+    public bool futuristicSelected;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +58,9 @@ public class WeaponSelector : MonoBehaviour
         {
             isGunSelected = true;
         }
+
+
+        gunCheck();
     }
 
     void SelectWeapon()
@@ -71,6 +77,23 @@ public class WeaponSelector : MonoBehaviour
                 Weapon.gameObject.SetActive(false);
             }
             i++;
+        }
+    }
+
+    void gunCheck()
+    {
+        if(isGunSelected)
+        {
+            if(selectedWeapon == 1)
+            {
+                assultSelected = true;
+                futuristicSelected = false;
+            }
+            else if(selectedWeapon == 2)
+            {
+                assultSelected = false;
+                futuristicSelected = true;
+            }
         }
     }
 }

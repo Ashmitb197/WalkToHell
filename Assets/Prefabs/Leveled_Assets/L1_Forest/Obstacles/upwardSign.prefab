@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4109788613838140820}
   - component: {fileID: 4136010220094738774}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: upwardSign
   m_TagString: Untagged
   m_Icon: {fileID: 0}

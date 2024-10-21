@@ -6,10 +6,14 @@ public class EnemyHealthSystem : HealthSystem
 {
 
     public int enemyHealth;
+
+    public AudioSource weaponSoundSource;
+    public AudioClip swordStabClip;
     // Start is called before the first frame update
     void Start()
     {
-        
+        swordStabClip = Resources.Load("Weapons/Sword/SwordStab.mp3") as AudioClip;
+        weaponSoundSource = GameObject.Find("Player").transform.Find("PivotPoint").gameObject.transform.Find("WeaponSound").gameObject.GetComponent<AudioSource>();
     }
 
     void Awake()
@@ -39,6 +43,7 @@ public class EnemyHealthSystem : HealthSystem
     {
         if(col.tag == "Sword")
         {
+            weaponSoundSource.PlayOneShot(swordStabClip, 0.5f);
             enemyHealth -= swordDamage;
         }
     }
