@@ -9,7 +9,7 @@ public class PlayerHealthScript : HealthSystem
     public int playerHealth;
     public GameObject healthBar;
 
-    public Slider healthSilder;
+    public Text healthText;
 
     public GameObject gameOverCanvas;
 
@@ -46,7 +46,7 @@ public class PlayerHealthScript : HealthSystem
     // Update is called once per frame
     void Update()
     {
-        healthSilder.value = playerHealth;
+        healthText.text = playerHealth.ToString();
        
         
         DeathCheck();
@@ -91,10 +91,7 @@ public class PlayerHealthScript : HealthSystem
 
         
 
-        if(col.collider.tag == "Enemy")
-        {
-            playerHealth -= enemyDamage;
-        }
+        
 
         if(col.collider.tag == "Bullet")
         {
@@ -103,7 +100,17 @@ public class PlayerHealthScript : HealthSystem
         
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    public void OnCollisionStay2D(Collision2D col)
+    {
+
+        if(col.collider.tag == "Enemy")
+        {
+            playerHealth -= 1;
+        }
+
+    }
+
+    void OnTriggerStay2D(Collider2D col)
     {
         if(col.tag == "Coins")
 		{
@@ -111,12 +118,18 @@ public class PlayerHealthScript : HealthSystem
 			string collidername = col.name;
 			Destroy(GameObject.Find(collidername));
             if(playerHealth < maxHealth)
-			    playerHealth += 1;
+			    playerHealth += 10;
 			//scoret.GetComponent<Text>().text = score.ToString();
 
             Debug.Log(playerHealth);
 
 		}
+
+        if(col.CompareTag("PoisonPlant"))
+        {
+            if(playerHealth > 0)
+			    playerHealth -= 1;
+        }
         
     }
 

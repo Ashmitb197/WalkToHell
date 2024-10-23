@@ -75,9 +75,9 @@ public class PlayerDetection : MonoBehaviour
         
         if(isPlayerDetected)
         {
-            camRef.transform.Rotate(new Vector3(0, 0, Mathf.Abs(playerDirectionNormalized.x * player.GetComponent<Rigidbody2D>().velocity.x)));
+            camRef.transform.Rotate(new Vector3(0, 0, Mathf.Abs(playerDirectionNormalized.x * player.GetComponent<Rigidbody2D>().linearVelocity.x)));
         }
-        Debug.Log("Player Velocity: "+player.GetComponent<Rigidbody2D>().velocity.x);
+        Debug.Log("Player Velocity: "+player.GetComponent<Rigidbody2D>().linearVelocity.x);
     }
 
     // void playerRotation()

@@ -19,7 +19,7 @@ public class bulletMovement : MonoBehaviour
 
    void Start()
    {
-        gameObject.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * 140;//*Time.deltaTime;
+        gameObject.GetComponent<Rigidbody2D>().linearVelocity = gameObject.transform.up * 140;//*Time.deltaTime;
    }
     
 

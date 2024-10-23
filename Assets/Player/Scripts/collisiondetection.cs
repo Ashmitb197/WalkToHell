@@ -41,7 +41,7 @@ public class collisiondetection : MonoBehaviour {
 		{
 			if(isClimbing)
 			{
-				rb.velocity = new Vector2(0, vertical * 3);
+				rb.linearVelocity = new Vector2(0, vertical * 3);
 			}
 		// else
 		// {

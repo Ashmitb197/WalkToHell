@@ -72,9 +72,6 @@ public class Movement_behaviour : MonoBehaviour {
 		
 		// Gun.transform.Rotate(new Vector3(0, 0, mouseYInput*rotationSpeed));
 
-		if(weaponSelectScript.isGunSelected)
-			muzzleRefrence = transform.Find("PivotPoint").gameObject.transform.Find("Weapons").gameObject.transform.GetChild(weaponSelectScript.selectedWeapon).gameObject.transform.Find("Muzzle").gameObject;
-
 	}
 	
 	
@@ -82,13 +79,10 @@ public class Movement_behaviour : MonoBehaviour {
 	void FixedUpdate () {
 		walk();
 		Jump();
-		if(weaponSelectScript.isGunSelected)
-		{
-			shootingMechanismScript.shootBullet(Gun, rb, bulletPrefab, muzzleRefrence);
-		}
+		shootingMechanismScript.shootBullet(Gun, rb, bulletPrefab, muzzleRefrence);
 		IsGrounded();
 		//foodCheck();
-		gunControledRotation();
+		//gunControledRotation();
 
 	}
 
@@ -135,9 +129,9 @@ public class Movement_behaviour : MonoBehaviour {
 		float jumpKeyPressedCheck = Input.GetAxisRaw("Jump");
 		if(jumpKeyPressedCheck == 1 && IsGrounded())
 		{
-			Vector2 jump_movement = new Vector2(rb.velocity.x, jumpforce);
+			Vector2 jump_movement = new Vector2(rb.linearVelocity.x, jumpforce);
 			anime.SetBool("Jump", true);
-			rb.velocity = jump_movement;
+			rb.linearVelocity = jump_movement;
 
 			// if(sr.flipX == true)
 			// {
