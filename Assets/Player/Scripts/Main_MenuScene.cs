@@ -49,7 +49,7 @@ public class Main_MenuScene : MonoBehaviour {
 		Invoke("quittingApplication", 2);
 	}
 
-	void quittingApplication()
+	public void quittingApplication()
 	{
 		Application.Quit();
 	}

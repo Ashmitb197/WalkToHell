@@ -98,6 +98,11 @@ public class PlayerHealthScript : HealthSystem
             playerHealth -= bulletDamage;
         }
         
+        if(col.collider.CompareTag("PoisonPlant"))
+        {
+            if(playerHealth > 0)
+			    playerHealth -= 1;
+        }
     }
 
     public void OnCollisionStay2D(Collision2D col)
@@ -125,11 +130,7 @@ public class PlayerHealthScript : HealthSystem
 
 		}
 
-        if(col.CompareTag("PoisonPlant"))
-        {
-            if(playerHealth > 0)
-			    playerHealth -= 1;
-        }
+        
         
     }
 
